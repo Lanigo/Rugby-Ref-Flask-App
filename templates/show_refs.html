@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% set active_page = "show_referees" %}
+
+{% block body %}
+	<h1> Active Referees </h1>
+	<ul class="list-group" id="referees">
+	{% for ref in referees %}
+		<li class="list-group-item">
+			<h3><a href="{{ url_for('get_ref') }}?id={{ ref.id }}">{{ ref.f_name }} {{ ref.l_name }}</a></h3><h4>{{ ref.country|safe }}</h4>
+				<p>Games Reffed<span class="badge">{{ ref.games_reffed }}</span></p>
+				<p>Total Penalties Awarded<span class="badge">{{ref.total_penalties }}</span></p>
+				<p>Added by {{ ref.added_by }}</p>
+		</li>
+		{% else %}
+		<div class="alert alert-info" role="alert">
+			<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+			<strong>Oops!</strong> We don't have any refs registered currently!
+		</div>
+	{% endfor %}
+	</ul>
+{% endblock %}

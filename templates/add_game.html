@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% set active_page = "add_game" %}
+{% from "macros.html" import add_game with context%}
+{% block body %}
+{{ add_game(false) }}
+{% endblock %}

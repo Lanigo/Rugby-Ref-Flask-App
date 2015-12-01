@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+	<head>
+		<title>Rugby Refs</title>
+			<!--[if gte IE 9]
+		<style type="text/css">
+		.gradient {
+		filter: none;
+		}
+		</style>
+		<![endif]-->
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+			
+	</head>
+		<!-- flash any messages I might have -->  
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				<ul class=flashes>
+				{% for category, message in messages %}
+					<div {% if category == 'message' %} class="alert alert-success alert-dismissable" {% else %} class="alert alert-{{category}} alert-dismissable" {%endif%} role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						{{message}}
+					</div>
+				{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+		
+		<!-- set up nav bar with pages -->  
+		{% set navigation_bar = [
+			('/', 'login', 'Home'),
+			('/show_referees', 'show_refs', 'All Refs!'),
+			('/add_a_ref', 'add_ref', 'Add A Ref!'),
+			('/add_a_game', 'add_game', "Record A Game"),
+			('/show_games', 'show_games', "Game History")] -%}
+
+		<!-- set the active page so I can change the nav accordingly -->  
+		{% set active_page = active_page|default('show_referees') -%}
+	
+		<nav class="navbar navbar-default" role="navigation">  
+			 <div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" class="clearfix" href="{{ url_for('show_referees') }}">
+						<img class="logo" id="home-logo" src="{{ url_for('static', filename='logo.png')}}" >
+					</a>
+				</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							{% for href, id, caption in navigation_bar %}
+								<li{% if id == active_page %} class="active"{% endif%}>
+									<a href="{{ href|e }}">{{ caption|e }}</a>
+									<span class="sr-only"></span>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+			  </div>
+			</nav>  
+	<div class="page">  
+		{% block body %}{% endblock %}
+	</div> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>  

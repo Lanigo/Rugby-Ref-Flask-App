@@ -1,0 +1,15 @@
+<!--home pg template-->
+{% extends 'layout.html' %}
+{% set active_page = "/" %}
+{% block body %}
+<div class="home">
+	<h1 class="home">Welcome to RWC Refs</h1>  
+	{% if current_user.is_authenticated() %}
+		<h2>Hey {{ current_user.username }}!!</h2>
+		<a class="home" href="{{ url_for('logout') }}">Click here to logout</a>
+	{% else %}  
+		Click here to <a  class="home" href="{{ url_for('login') }}">login</a> or
+		<a class="home" href="{{ url_for('register') }}">register</a>  
+	{% endif %}
+</div>	
+{% endblock %} 

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="referee">
+	{% if ref %}
+		<div class="panel panel-primary">
+			<div class="panel-heading">Name</div>
+			<div class="panel-body">{{ ref.f_name }} {{ ref.l_name }}</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Country</div>
+			<div class="panel-body">{{ ref.country }}</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Ref Number</div>
+			<div class="panel-body">{{ ref.number }}</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Years Active</div>
+			<div class="panel-body">{{ ref.years_active }}</div>
+		</div>
+	{% else %}
+		<div class="alert alert-warning" role="alert">
+			No results found!
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}

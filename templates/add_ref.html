@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% set active_page = "add_ref" %}
+{% block body %}
+    <form role="form" action="{{ url_for('add_ref') }}" method="post" class="add-ref">
+		<div class="form-group">
+			<label for="refFirstNameInput">First Name </label>
+			<input class="form-control" type="text" size="30" name="f_name" id="refFirstNameInput">
+		</div>
+		<div class="form-group">
+			<label for="refLastNameInput">Last Name:</label>
+			<input class="form-control" type="text" size="30" name="l_name" id="refLastNameInput">
+		</div>
+		<div class="form-group">
+			<label for="refCountryInput">Country</label>
+			<input class="form-control" type="text" size="30" name="country" id="refCountryInput">
+		</div>
+		<div class="form-group">
+			<label for="refNumberInput"> Number: </label>
+			<input class="form-control" type="number" name="number" id="refNumberInput">
+		</div>
+		<div>
+			<label for="refYearsInput">Years Active:</label>
+			<input class="form-control" type="number" name="years" id="refYearsInput">
+		</div>
+		<div>
+			<label for="addedByUser">Added By:</label>
+			<input class="form-control" type="text" size="30" name="added" id="addedByUser">
+		</div>
+		<div class="container text-right">
+			<button type="submit" class="btn btn-default">Submit</button>
+		</div>
+		</form>
+{% endblock %}
